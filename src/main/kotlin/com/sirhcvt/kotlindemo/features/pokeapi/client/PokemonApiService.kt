@@ -26,8 +26,8 @@ class PokemonApiService(
         return response.results
     }
 
-    suspend fun getPokemonDetails(id: String?): Pokemon {
-        require(!id.isNullOrBlank()) { "Pokemon id must not be null or blank" }
+    suspend fun getPokemonDetails(id: String): Pokemon {
+        require(id.isNotBlank()) { "Pokemon id must not be blank" }
         return client.get()
             .uri("pokemon/{id}", id)
             .retrieve()
